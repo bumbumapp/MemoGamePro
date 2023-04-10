@@ -1,28 +1,5 @@
-[![Twitter](https://img.shields.io/badge/twitter-@SECUSOResearch-%231DA1F2.svg?&style=flat-square&logo=twitter&logoColor=1DA1F2)][Twitter]
-[![Mastodon](https://img.shields.io/badge/mastodon-@SECUSO__Research@baw%C3%BC.social-%233088D4.svg?&style=flat-square&logo=mastodon&logoColor=3088D4)][Mastodon]
+The main source code has been taken from [here](https://github.com/SecUSo/privacy-friendly-memo-game)
 
-[Mastodon]: https://xn--baw-joa.social/@SECUSO_Research
-[Twitter]: https://twitter.com/SECUSOResearch
-# Privacy Friendly Memo Game
-
-[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/repository/browse/?fdid=org.secuso.privacyfriendlymemory)<a href="https://play.google.com/store/apps/details?id=org.secuso.privacyfriendlymemory"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
-
-Privacy Friendly Memo Game is a card game. The task is to find matching pairs within the cards. The application does not use any permission, which means it can provide its full functionality without the usage of permissions and it does not include advertisement nor tracking mechanisms.
-
-This app belongs to the group of [Privacy Friendly Apps](https://secuso.org/pfa) developed by the [SECUSO](https://secuso.org/) Group at [Karlsruher Institute for Technology (KIT)](https://www.kit.edu).
-
-## Motivation 
-
-Privacy Friendly Apps are group of Android applications which are optimized regarding privacy. Further information can be found on https://secuso.org/pfa
-
-## Building
-
-Further development requires Android Studio.
-
-### API Reference
-
-Mininum SDK: 17
-Target SDK: 28 
 
 ## License
 
@@ -45,16 +22,3 @@ The icons used in the nagivation drawer are licensed under the [CC BY 2.5](http:
 The app provides two defined card design images. The images for the TuX deck are licensed under the GPLv3 (https://github.com/androidsoft-org/androidsoft-tuxmemory) and the images for the Animal deck are taken from openclipart.org and are licensed under the [Creative Commons Zero 1.0](https://openclipart.org/share) License. Also the icons ic_trophy_award_black_48dp and ic_trophy_black_48dp are licensed under the Sil Open Font License Version 1.1.
 <br />
 The Privacy Friendly Apps logo, the SECUSO logo, and the app logo are copyright [Karlsruher Institute for Technology (KIT)](https://www.kit.edu) (2019). Every other icon is from the [Google Design Material Icons](https://material.io/resources/icons/?style=baseline) licensed under Apache License Version 2.0.
-
-
-## Contributors
-
-App-Icon: <br />
-Markus Hau<br />
-
-Github-Users: <br />
-hanneshofmann <br />
-yonjuni <br />
-Kamuno <br />
-sleep-yearning <br />
-Poussinou
