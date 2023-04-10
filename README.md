@@ -1,7 +1,7 @@
 The main source code has been taken from [here](https://github.com/SecUSo/privacy-friendly-memo-game)
 
 
-## License
+## [License](https://github.com/SecUSo/privacy-friendly-memo-game/blob/master/LICENSE.md)
 
 Privacy Friendly Memo Game is lisenced under the GPLv3. Copyright (C) 2016-2018 Hannes Hofmann, 2019 Christopher Beckmann, Noah Schlegel
 
