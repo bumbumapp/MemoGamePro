@@ -108,7 +108,7 @@ public abstract class MemoAppCompatDrawerActivity extends AppCompatActivity  {
         ((Button) dialog.findViewById(R.id.app_source_code)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url="https://github.com/bumbumapp/Pdfmerge";
+                String url="https://github.com/bumbumapp/MemoGamePro";
                 Intent urlIntent=new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(urlIntent);
             }
