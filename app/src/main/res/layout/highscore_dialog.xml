@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/levelback"
+    android:paddingBottom="30dp"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:layout_gravity="bottom">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|end"
+                android:tint="@color/yellow"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_trophy_award_black_48dp" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:background="@color/middleblue"
+                android:layout_gravity="bottom"
+                android:foregroundGravity="bottom"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/win_middle_linear"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="3"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/menu_highscore"
+                    android:textSize="25sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColor" />
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:visibility="gone"
+                    android:src="@drawable/image_highscore"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:id="@+id/highscore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/tries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary" />
+
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_gravity="bottom">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:tint="@color/yellow"
+                android:src="@drawable/ic_trophy_award_black_48dp"
+                android:background="@color/transparent" />
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:background="@color/middleblue"
+                android:layout_gravity="bottom"
+                android:foregroundGravity="bottom"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="20dp"
+        android:weightSum="2">
+        <Button
+            android:id="@+id/resetALL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/standalone_button"
+            android:textColor="@color/yellow"
+            android:layout_weight="1"
+            android:text="@string/reset_highscore"
+            android:textAllCaps="false"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:id="@+id/okay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/standalone_button"
+            android:textColor="@color/yellow"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="@string/button_ok"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+</LinearLayout>

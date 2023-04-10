@@ -3,19 +3,32 @@
 
     <group android:id="@+id/group1">
         <item android:id="@+id/menu_main" android:icon="@drawable/ic_home"
+           android:iconTint="@color/textColor"
             android:title="@string/menu_menu" />
-        <item android:id="@+id/menu_highscore" android:icon="@android:drawable/ic_menu_myplaces"
-            android:title="@string/menu_highscore" />
+        <item android:id="@+id/menu_highscore" android:icon="@drawable/image_highscore"
+            android:title="@string/menu_highscore"
+            android:iconTint="@color/textColor"
+            />
         <item android:id="@+id/menu_statistics" android:icon="@drawable/ic_statistics"
-            android:title="@string/menu_statistics" />
+            android:title="@string/menu_statistics"
+            android:iconTint="@color/textColor"
+            />
     </group>
     <group android:id="@+id/group4">
         <item android:id="@+id/menu_settings" android:icon="@drawable/ic_settings"
-            android:title="@string/menu_settings" />
-        <item android:id="@+id/menu_help" android:icon="@drawable/ic_help"
-            android:title="@string/menu_help" />
-        <item android:id="@+id/menu_about" android:icon="@drawable/ic_about"
-            android:title="@string/menu_about" />
+            android:title="@string/menu_settings"
+            android:iconTint="@color/textColor"
+            />
+
+
+    </group>
+    <group android:id="@+id/group5">
+        <item android:id="@+id/about" android:icon="@drawable/ic_about"
+            android:title="@string/menu_about"
+            android:iconTint="@color/textColor"
+            />
+
+
     </group>
 
 </menu>

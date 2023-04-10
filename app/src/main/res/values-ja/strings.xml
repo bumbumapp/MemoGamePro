@@ -17,7 +17,7 @@
     <string name="menu_about">アプリについて</string>
 
     <!-- menu drawer statistics -->
-    <string name="carddesign_displayname_first">タックス デッキ</string>
+    <string name="carddesign_displayname_first">フルーツデッキ</string>
     <string name="carddesign_displayname_second">アニマルデッキ</string>
     <string name="carddesign_displayname_custom">カスタム デッキ</string>
     <string name="false_selected">間違った選択:</string>

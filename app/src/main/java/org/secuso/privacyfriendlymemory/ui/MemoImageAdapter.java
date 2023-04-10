@@ -27,6 +27,7 @@ public class MemoImageAdapter extends BaseAdapter {
     private final Uri notFoundUri;
     private final Bitmap notFoundBitmap;
 
+
     public MemoImageAdapter(Context context, MemoGameLayoutProvider layoutProvider) {
         this.context = context;
         this.layoutProvider = layoutProvider;

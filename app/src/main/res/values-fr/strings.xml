@@ -17,7 +17,7 @@
     <string name="menu_about">À propos</string>
 
     <!-- menu drawer statistics -->
-    <string name="carddesign_displayname_first">Deck Tux</string>
+    <string name="carddesign_displayname_first">Deck des fruits</string>
     <string name="carddesign_displayname_second">Deck Animaux</string>
     <string name="carddesign_displayname_custom">Deck Personnalisé</string>
     <string name="false_selected">Sélection incorrecte :</string>

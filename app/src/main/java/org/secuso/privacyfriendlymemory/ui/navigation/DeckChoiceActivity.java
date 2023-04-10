@@ -155,7 +155,7 @@ public class DeckChoiceActivity extends AppCompatPreferenceActivity {
                 Log.d("DeckChoiceActivity", "Could not pick images " + e.getLocalizedMessage());
             }
             // check if enough images are picked
-            int neededImageSize = MemoGameDifficulty.Hard.getDeckSize() / 2;
+            int neededImageSize = MemoGameDifficulty.Level24.getDeckSize() / 2;
             if (customImageUris.size() >= neededImageSize) {
                 sharedPreferences.edit().putStringSet(Constants.CUSTOM_CARDS_URIS, customImageUris).commit();
                 thirdBox.setEnabled(true);

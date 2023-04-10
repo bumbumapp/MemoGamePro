@@ -17,7 +17,7 @@
     <string name="menu_about">Über</string>
 
     <!-- menu drawer statistics -->
-    <string name="carddesign_displayname_first">TuX Deck</string>
+    <string name="carddesign_displayname_first">Obst Deck</string>
     <string name="carddesign_displayname_second">Tier Deck</string>
     <string name="carddesign_displayname_custom">Eigenes Deck</string>
     <string name="false_selected">Falsch ausgewählt:</string>

@@ -1,18 +1,26 @@
 package org.secuso.privacyfriendlymemory.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -22,6 +30,7 @@ import android.widget.TextView;
 import org.secuso.privacyfriendlymemory.Constants;
 import org.secuso.privacyfriendlymemory.common.MemoGameLayoutProvider;
 import org.secuso.privacyfriendlymemory.common.MemoGameStatistics;
+import org.secuso.privacyfriendlymemory.common.Preference;
 import org.secuso.privacyfriendlymemory.common.ResIdAdapter;
 import org.secuso.privacyfriendlymemory.model.CardDesign;
 import org.secuso.privacyfriendlymemory.model.MemoGame;
@@ -46,6 +55,7 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
     private MemoGameLayoutProvider layoutProvider;
     private GridView  gridview;
     private Timer timerViewUpdater;
+    private Preference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +73,7 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
         setupGridview();
         updateStatsView();
         setupToolBar();
+
     }
 
     @Override
@@ -84,6 +95,7 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
 
     private void setupToolBar() {
         // setup memory mode text view
+        preference=new Preference(this);
         TextView modeView = (TextView) findViewById(R.id.gameModeText);
         modeView.setText(memory.getMode().getStringResID());
         // setup difficulty bar view
@@ -124,10 +136,12 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
         gridview.setAdapter(imageAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
+                                    final int position, long id) {
                 memory.select(position);
 
-                // if two cards are false selected and memory is played with a custom card set increment "false selected count" for statistics
+
+
+                   // if two cards are false selected and memory is played with a custom card set increment "false selected count" for statistics
                 if (!memory.isCustomDesign()) {
                     Integer[] falseSelectedCards = memory.getFalseSelectedCards();
                     if (falseSelectedCards != null) {
@@ -138,13 +152,15 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
                     }
                 }
                 // adapter must be notified, that images will be refreshed if selected
-                imageAdapter.notifyDataSetChanged();
+
+                        imageAdapter.notifyDataSetChanged();
+
+
                 // update stats (found cards, tries, next player,..)
                 updateStatsView();
 
                 if (memory.isFinished()) {
                     saveHighscore();
-                    showWinDialog();
                     gridview.setEnabled(false);
                     timerViewUpdater.cancel();
                 }
@@ -176,6 +192,9 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
         TextView playerTwoFoundsValueView = (TextView) findViewById(R.id.player_two_found_value);
         TextView playerTwoTriesView = (TextView) findViewById(R.id.player_two_tries);
         TextView playerTwoTriesValueView = (TextView) findViewById(R.id.player_two_tries_value);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        }
         if (memory.isMultiplayer()) {
             playerOneNameView.setVisibility(View.VISIBLE);
             MemoGamePlayer playerTwo = memory.getPlayers().get(1);
@@ -201,7 +220,7 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
         TextView playerOneTriesView = (TextView) findViewById(R.id.player_one_tries);
         // highlight current player
         MemoGamePlayer currentPlayer = memory.getCurrentPlayer();
-        int highlightColor = ContextCompat.getColor(this, R.color.colorPrimary);
+        int highlightColor = ContextCompat.getColor(this, R.color.yellow);
         int normalColor = ContextCompat.getColor(this, R.color.middlegrey);
         if (currentPlayer == playerOne) {
             setColorFor(highlightColor, playerOneNameView, playerOneFoundsView, playerOneFoundsValueView, playerOneTriesView, playerOneTriesValueView);
@@ -224,33 +243,14 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
             int actualScore = highscore.getScore();
             int actualTries = highscore.getTries();
             int actualTime = highscore.getTime();
-            MemoGameDifficulty difficulty = memory.getDifficulty();
-            String highscoreConstants = "";
-            String highscoreTriesConstants = "";
-            String highscoreTimeConstants = "";
-            switch (difficulty) {
-                case Easy:
-                    highscoreConstants = Constants.HIGHSCORE_EASY;
-                    highscoreTriesConstants = Constants.HIGHSCORE_EASY_TRIES;
-                    highscoreTimeConstants = Constants.HIGHSCORE_EASY_TIME;
-                    break;
-                case Moderate:
-                    highscoreConstants = Constants.HIGHSCORE_MODERATE;
-                    highscoreTriesConstants = Constants.HIGHSCORE_MODERATE_TRIES;
-                    highscoreTimeConstants = Constants.HIGHSCORE_MODERATE_TIME;
-                    break;
-                case Hard:
-                    highscoreConstants = Constants.HIGHSCORE_HARD;
-                    highscoreTriesConstants = Constants.HIGHSCORE_HARD_TRIES;
-                    highscoreTimeConstants = Constants.HIGHSCORE_HARD_TIME;
-                    break;
-            }
-            int currentScore = preferences.getInt(highscoreConstants, 0);
+
+            int currentScore = preference.getIntegerHigh("highscore");
             if (actualScore > currentScore) {
-                preferences.edit().putInt(highscoreConstants, actualScore).commit();
-                preferences.edit().putInt(highscoreTriesConstants, actualTries).commit();
-                preferences.edit().putInt(highscoreTimeConstants, actualTime).commit();
+                preference.putIntegerHigh("highscore", actualScore);
+                preference.putIntegerHigh("highscoreTries", actualTries);
+                preference.putIntegerHigh("highscoreTime", actualTime);
             }
+            showWinDialog();
         }
     }
 
@@ -260,6 +260,13 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
             dialog = new DuoPlayerWinDialog(this, R.style.WinDialog, memory.getPlayers());
             dialog.getWindow().setContentView(R.layout.win_duo_screen_layout);
         } else {
+            Preference preference=new Preference(this);
+            int k=preference.getInteger("level");
+            int endLevel=preference.getInteger("end_level");
+            if (k<=24 && endLevel==k){
+                preference.putInteger("level",k+1);
+                preference.putInteger("end_level",k+1);
+            }
             dialog = new SinglePlayerWinDialog(this, R.style.WinDialog, memory.getHighscore());
             dialog.getWindow().setContentView(R.layout.win_solo_screen_layout);
         }
@@ -350,16 +357,17 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
             this.highscore = highscore;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
-            ((TextView) findViewById(R.id.win_time)).setText(timeToString(highscore.getTime()));
-            ((TextView) findViewById(R.id.win_tries)).setText(String.valueOf(highscore.getTries()));
+            ((TextView) findViewById(R.id.win_time)).setText(getString(R.string.win_time)+" "+timeToString(highscore.getTime()));
+            ((TextView) findViewById(R.id.win_tries)).setText(getString(R.string.win_tries)+" "+String.valueOf(highscore.getTries()));
             // highscore is not valid if a custom deck is selected
             if (highscore.isValid()) {
-                ((TextView) findViewById(R.id.win_score)).setText(String.valueOf(highscore.getScore()));
-                ((TextView) findViewById(R.id.win_highscore)).setText(String.valueOf(getSavedHighscore()));
+                ((TextView) findViewById(R.id.win_score)).setText(getString(R.string.win_score)+" "+String.valueOf(highscore.getScore()));
+                ((TextView) findViewById(R.id.win_highscore)).setText(getString(R.string.win_highscore)+" "+preference.getIntegerHigh("highscore"));
             } else {
                 ((TextView) findViewById(R.id.win_highscore_text)).setText("");
             }
@@ -367,15 +375,8 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
         }
 
         private int getSavedHighscore() {
-            switch(memory.getDifficulty()) {
-                case Easy:
-                    return preferences.getInt(Constants.HIGHSCORE_EASY, 0);
-                case Moderate:
-                    return preferences.getInt(Constants.HIGHSCORE_MODERATE, 0);
-                case Hard:
-                    return preferences.getInt(Constants.HIGHSCORE_HARD, 0);
-            }
-            return 0;
+            return preferences.getInt(Constants.HIGHSCORE_EASY, 0);
+
         }
     }
 

@@ -79,7 +79,7 @@ public class StatisticsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setTitle(R.string.menu_statistics);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#024265")));
+            actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#221f35")));
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -98,8 +98,8 @@ public class StatisticsActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.menu_statistics_reset:
-                List<Integer> resIdsDeckOne = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Hard, false);
-                List<Integer> resIdsDeckTwo = MemoGameDefaultImages.getResIDs(CardDesign.SECOND, MemoGameDifficulty.Hard, false);
+                List<Integer> resIdsDeckOne = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Level24, false);
+                List<Integer> resIdsDeckTwo = MemoGameDefaultImages.getResIDs(CardDesign.SECOND, MemoGameDifficulty.Level24, false);
                 List<String> resourceNamesDeckOne = ResIdAdapter.getResourceName(resIdsDeckOne, this);
 
                 List<String> resourceNamesDeckTwo = ResIdAdapter.getResourceName(resIdsDeckTwo, this);
