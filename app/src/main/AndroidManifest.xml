@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.secuso.privacyfriendlymemory.ui">
+    package="org.bumbumapps.privacyfriendlymemory.ui">
 
     <application
         android:allowBackup="true"
         android:largeHeap="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_logo"
+        android:roundIcon="@mipmap/app_logo_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="org.secuso.privacyfriendlymemory.ui.SplashActivity"
+            android:name="org.bumbumapps.privacyfriendlymemory.ui.SplashActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
@@ -20,21 +21,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.secuso.privacyfriendlymemory.ui.MainActivity"
+            android:name="org.bumbumapps.privacyfriendlymemory.ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name="org.secuso.privacyfriendlymemory.ui.navigation.HelpActivity"
+        <activity android:name="org.bumbumapps.privacyfriendlymemory.ui.navigation.HelpActivity"
             />
-        <activity android:name="org.secuso.privacyfriendlymemory.ui.navigation.HighscoreActivity"
+        <activity android:name="org.bumbumapps.privacyfriendlymemory.ui.navigation.HighscoreActivity"
             android:theme="@style/PreferenceTheme"
             />
 
-        <activity android:name="org.secuso.privacyfriendlymemory.ui.navigation.StatisticsActivity"
+        <activity android:name="org.bumbumapps.privacyfriendlymemory.ui.navigation.StatisticsActivity"
            />
-        <activity android:name="org.secuso.privacyfriendlymemory.ui.navigation.DeckChoiceActivity"
+        <activity android:name="org.bumbumapps.privacyfriendlymemory.ui.navigation.DeckChoiceActivity"
             />
-        <activity android:name="org.secuso.privacyfriendlymemory.ui.MemoActivity"
+        <activity android:name="org.bumbumapps.privacyfriendlymemory.ui.MemoActivity"
                   android:label="@string/app_name"
                   android:theme="@style/AppTheme.NoActionBar"
                   android:configChanges="orientation|screenSize">

@@ -1,7 +1,7 @@
 <resources>
     <!-- Shared -->
-    <string name="app_name">Memo Game</string>
-    <string name="app_name_long">Privacy Friendly Memo Game</string>
+    <string name="app_name">Memo Game pro</string>
+    <string name="app_name_long">Memo Game pro</string>
     <string name="button_ok">Okay</string>
     <string name="button_help">View Help</string>
 

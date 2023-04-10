@@ -1,7 +1,5 @@
 <resources>
     <!-- Shared -->
-    <string name="app_name">Memo Game</string>
-    <string name="app_name_long">Privacy Friendly Memo Game</string>
     <string name="button_ok">OK</string>
     <string name="button_help">ヘルプを表示</string>
 

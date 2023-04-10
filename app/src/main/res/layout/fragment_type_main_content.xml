@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="8"
-    tools:context="org.secuso.privacyfriendlymemory.ui.MainActivity$GameTypeFragment">
+    tools:context="org.bumbumapps.privacyfriendlymemory.ui.MainActivity$GameTypeFragment">
 
     <TextView
         android:id="@+id/section_label"
