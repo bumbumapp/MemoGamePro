@@ -1,7 +1,7 @@
 <resources>
     <!-- Shared -->
-    <string name="app_name">Memo Game pro</string>
-    <string name="app_name_long">Memo Game pro</string>
+    <string name="app_name">Memo Game</string>
+    <string name="app_name_long">Memo Game</string>
     <string name="button_ok">Okay</string>
     <string name="button_help">View Help</string>
 
@@ -122,4 +122,7 @@
     <string name="quit_yes">Yes</string>
     <string name="quit_no">No</string>
     <string name="play_friend">Play with friend</string>
+    <string name="app_id">ca-app-pub-8444865753152507~4066924554</string>
+    <string name="banner_id">ca-app-pub-8444865753152507/7431454491</string>
+    <string name="interstial_id">ca-app-pub-8444865753152507/6814439021</string>
 </resources>

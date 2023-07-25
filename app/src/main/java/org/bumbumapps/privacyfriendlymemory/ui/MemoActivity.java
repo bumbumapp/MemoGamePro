@@ -10,7 +10,6 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,23 @@ import android.widget.GridView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
+import org.bumbumapps.privacyfriendlymemory.BannersLoader;
 import org.bumbumapps.privacyfriendlymemory.Constants;
+import org.bumbumapps.privacyfriendlymemory.Globals;
+import org.bumbumapps.privacyfriendlymemory.Timers;
 import org.bumbumapps.privacyfriendlymemory.common.MemoGameLayoutProvider;
 import org.bumbumapps.privacyfriendlymemory.common.MemoGameStatistics;
 import org.bumbumapps.privacyfriendlymemory.common.Preference;
@@ -50,6 +65,8 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
     private GridView  gridview;
     private Timer timerViewUpdater;
     private Preference preference;
+    private InterstitialAd mInterstitialAd;
+    private AdView bannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +84,9 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
         setupGridview();
         updateStatsView();
         setupToolBar();
+        loadGoogleInterstitialAd();
+        bannerView=findViewById(R.id.hw_banner_view);
+        BannersLoader.showGoogleBannerAd(this,bannerView);
 
     }
 
@@ -135,7 +155,7 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
 
 
 
-                   // if two cards are false selected and memory is played with a custom card set increment "false selected count" for statistics
+                // if two cards are false selected and memory is played with a custom card set increment "false selected count" for statistics
                 if (!memory.isCustomDesign()) {
                     Integer[] falseSelectedCards = memory.getFalseSelectedCards();
                     if (falseSelectedCards != null) {
@@ -147,7 +167,7 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
                 }
                 // adapter must be notified, that images will be refreshed if selected
 
-                        imageAdapter.notifyDataSetChanged();
+                imageAdapter.notifyDataSetChanged();
 
 
                 // update stats (found cards, tries, next player,..)
@@ -226,10 +246,10 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
     }
 
     private static void setColorFor(int color, TextView... views) {
-		for (TextView view : views) {
-			view.setTextColor(color);
-		}
-	}
+        for (TextView view : views) {
+            view.setTextColor(color);
+        }
+    }
 
     private void saveHighscore() {
         if (!memory.isMultiplayer()) {
@@ -244,11 +264,28 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
                 preference.putIntegerHigh("highscoreTries", actualTries);
                 preference.putIntegerHigh("highscoreTime", actualTime);
             }
+
+
+        }
+        if(Globals.TIMER_FINISHED && mInterstitialAd!=null){
+            mInterstitialAd.show(this);
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    Globals.TIMER_FINISHED=false;
+                    Timers.timer().start();
+                    mInterstitialAd = null;
+                    showWinDialog();
+                    loadGoogleInterstitialAd();
+                }
+            });
+        } else {
             showWinDialog();
         }
     }
 
     private void showWinDialog() {
+
         final Dialog dialog;
         if (memory.isMultiplayer()) {
             dialog = new DuoPlayerWinDialog(this, R.style.WinDialog, memory.getPlayers());
@@ -423,6 +460,30 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
             }
             return winnerName;
         }
+    }
+    private void loadGoogleInterstitialAd() {
+        MobileAds.initialize(context, (OnInitializationCompleteListener) new OnInitializationCompleteListener() {
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        InterstitialAd.load(
+                context,
+                context.getString(R.string.interstial_id),
+                new AdRequest.Builder().build(),
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        mInterstitialAd = interstitialAd;
+
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        super.onAdFailedToLoad(loadAdError);
+                        mInterstitialAd = null;
+                    }
+                });
     }
 
 }

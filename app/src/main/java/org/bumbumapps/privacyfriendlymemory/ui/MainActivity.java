@@ -6,12 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +15,17 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.gms.ads.AdView;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
+import org.bumbumapps.privacyfriendlymemory.BannersLoader;
 import org.bumbumapps.privacyfriendlymemory.Constants;
 import org.bumbumapps.privacyfriendlymemory.common.MemoGameStatistics;
 import org.bumbumapps.privacyfriendlymemory.common.Preference;
@@ -42,22 +47,26 @@ public class MainActivity extends AppCompatDrawerActivity {
     private Preference preference;
     private Drawable drawable2;
     Drawable drawable;
+    AdView bannerView;
     TextView level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11,level12,level13,level14,level15,level16,level17,level18,level19,level20,level21,level22,level23,level24;
     private ArrayList<TextView> textViews=new ArrayList<TextView>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupPreferences();
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
 
         if (isFirstAppStart()) {
             setAppStarted();
             initStatistics();
-         }
+        }
 
         setContentView(R.layout.activity_main);
         setupViewPager();
         setupLevels();
+        bannerView=findViewById(R.id.hw_banner_view);
         setupDifficultyBar();
+        BannersLoader.showGoogleBannerAd(this,bannerView);
         final NestedScrollView nestedScrollView = findViewById(R.id.neested);
 
         nestedScrollView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -100,8 +109,8 @@ public class MainActivity extends AppCompatDrawerActivity {
         drawable = ContextCompat.getDrawable(this, R.drawable.levelbg1);
         drawable2 = ContextCompat.getDrawable(this, R.drawable.levelbg3);
 
-         setDrawableBackground(preference.getInteger("end_level"));
-         setEndDrawableBAcground();
+        setDrawableBackground(preference.getInteger("end_level"));
+        setEndDrawableBAcground();
 
 
 
@@ -567,9 +576,9 @@ public class MainActivity extends AppCompatDrawerActivity {
         switch (view.getId()) {
             case R.id.playButton:
                 // get select game type and difficulty
-                 memoryMode = MemoGameMode.getValidTypes().get(0);
+                memoryMode = MemoGameMode.getValidTypes().get(0);
 
-                 memoryDifficulty = MemoGameDifficulty.getValidDifficulties().get(preference.getInteger("end_level")-1);
+                memoryDifficulty = MemoGameDifficulty.getValidDifficulties().get(preference.getInteger("end_level")-1);
 
                 // send game information to game activity
                 intent.putExtra(Constants.GAME_MODE, memoryMode);

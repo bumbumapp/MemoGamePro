@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:hwads="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:weightSum="8"
     android:divider="#000"
@@ -11,12 +12,13 @@
     android:gravity="center_horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/hw_banner_view"
         android:id="@+id/neested"
 
-       >
+        >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -429,7 +431,7 @@
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="-99dp">
 
-                    <android.support.v4.view.ViewPager
+                    <androidx.viewpager.widget.ViewPager
                         android:id="@+id/scroller"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -506,7 +508,7 @@
 
         </RelativeLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/playButton"
@@ -530,7 +532,6 @@
         android:id="@+id/playFirend"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/main_button_padding"
         android:layout_marginTop="10dp"
         android:layout_marginRight="@dimen/main_button_padding"
@@ -540,6 +541,7 @@
         android:onClick="onClick"
         android:text="@string/play_friend"
         android:textAllCaps="false"
+        android:layout_above="@+id/hw_banner_view"
         android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="normal" />
@@ -548,7 +550,6 @@
         android:id="@+id/main_menu2"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/main_button_padding"
         android:layout_marginTop="10dp"
         android:layout_marginRight="@dimen/main_button_padding"
@@ -561,5 +562,13 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17sp"
+        android:layout_above="@+id/hw_banner_view"
         android:textStyle="normal" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/hw_banner_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:adSize="FULL_BANNER"
+        app:adUnitId="@string/banner_id"/>
 </RelativeLayout>

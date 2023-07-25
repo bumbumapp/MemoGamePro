@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
+
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.ActionBar;
 
 import org.bumbumapps.privacyfriendlymemory.Constants;
 import org.bumbumapps.privacyfriendlymemory.ui.AppCompatPreferenceActivity;

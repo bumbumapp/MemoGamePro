@@ -7,8 +7,10 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.support.v7.app.ActionBar;
+
 import android.view.MenuItem;
+
+import androidx.appcompat.app.ActionBar;
 
 import org.bumbumapps.privacyfriendlymemory.ui.AppCompatPreferenceActivity;
 import org.bumbumapps.privacyfriendlymemory.ui.R;

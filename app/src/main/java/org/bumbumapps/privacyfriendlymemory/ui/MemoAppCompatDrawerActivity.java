@@ -10,11 +10,6 @@ import android.graphics.drawable.InsetDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,6 +21,12 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
 import org.bumbumapps.privacyfriendlymemory.common.Preference;
 import org.bumbumapps.privacyfriendlymemory.ui.navigation.DeckChoiceActivity;
 import org.bumbumapps.privacyfriendlymemory.ui.navigation.StatisticsActivity;
@@ -33,7 +34,7 @@ import org.bumbumapps.privacyfriendlymemory.ui.navigation.StatisticsActivity;
 /**
  * Created by Hannes on 18.05.2016.
  */
-public abstract class MemoAppCompatDrawerActivity extends AppCompatActivity  {
+public abstract class MemoAppCompatDrawerActivity extends AppCompatActivity {
     private Preference preference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

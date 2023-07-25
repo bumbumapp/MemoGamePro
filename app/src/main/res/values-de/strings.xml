@@ -1,7 +1,7 @@
 <resources>
     <!-- Shared -->
-    <string name="app_name">Memospiel pro</string>
-    <string name="app_name_long">Memospiel pro</string>
+    <string name="app_name">Memospiel</string>
+    <string name="app_name_long">Memospiel</string>
     <string name="button_ok">Okay</string>
     <string name="button_help">Zeige Hilfe</string>
 

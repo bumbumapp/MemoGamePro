@@ -1,6 +1,7 @@
 package org.bumbumapps.privacyfriendlymemory.model;
 
-import android.support.annotation.StringRes;
+
+import androidx.annotation.StringRes;
 
 import org.bumbumapps.privacyfriendlymemory.ui.R;
 
