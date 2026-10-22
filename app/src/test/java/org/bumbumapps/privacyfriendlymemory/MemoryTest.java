@@ -18,7 +18,7 @@ public class MemoryTest {
 
     @Before
     public void setUp(){
-        this.memory = new MemoGame(CardDesign.FIRST, MemoGameMode.ONE_PLAYER, MemoGameDifficulty.Easy);
+        this.memory = new MemoGame(CardDesign.FIRST, MemoGameMode.ONE_PLAYER, MemoGameDifficulty.Level1);
     }
 
     @Test

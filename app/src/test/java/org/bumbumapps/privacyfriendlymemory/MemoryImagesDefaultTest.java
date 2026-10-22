@@ -13,9 +13,9 @@ import static org.junit.Assert.assertEquals;
 
 public class MemoryImagesDefaultTest {
 
-    private static final int     EXPECTED_SIZE_EASY        = MemoGameDifficulty.Easy.getDeckSize()/2;
-    private static final int     EXPECTED_SIZE_MODERATE    = MemoGameDifficulty.Moderate.getDeckSize()/2;
-    private static final int     EXPECTED_SIZE_HARD        = MemoGameDifficulty.Hard.getDeckSize()/2;
+    private static final int     EXPECTED_SIZE_EASY        = MemoGameDifficulty.Level1.getDeckSize()/2;
+    private static final int     EXPECTED_SIZE_MODERATE    = MemoGameDifficulty.Level10.getDeckSize()/2;
+    private static final int     EXPECTED_SIZE_HARD        = MemoGameDifficulty.Level24.getDeckSize()/2;
 
     private static List<Integer> IMAGES_FIRST_EASY         = new LinkedList<>();
     private static List<Integer> IMAGES_FIRST_MODERATE     = new LinkedList<>();
@@ -23,9 +23,9 @@ public class MemoryImagesDefaultTest {
 
     @Before
     public void setupImages(){
-        IMAGES_FIRST_EASY       = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Easy,false);
-        IMAGES_FIRST_MODERATE   = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Moderate, false);
-        IMAGES_FIRST_HARD       = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Hard, false);
+        IMAGES_FIRST_EASY       = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Level1,false);
+        IMAGES_FIRST_MODERATE   = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Level10, false);
+        IMAGES_FIRST_HARD       = MemoGameDefaultImages.getResIDs(CardDesign.FIRST, MemoGameDifficulty.Level24, false);
     }
 
     @Test

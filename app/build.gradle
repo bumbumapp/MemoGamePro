@@ -2,43 +2,58 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 android {
-    compileSdkVersion 33
+    namespace 'org.bumbumapps.privacyfriendlymemory.ui'
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.bumbumapps.memogamepro"
-        minSdkVersion 26
-        targetSdkVersion 33
-        versionCode 4
-        versionName "1.1.2"
+        minSdk 26
+        targetSdk 36
+        // Play: versionCode 4 is live.
+        versionCode 5
+        versionName "1.2.0"
         vectorDrawables.useSupportLibrary = true
-
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    lint {
+        abortOnError false
     }
     buildTypes {
+        debug {
+            // Google test ads in debug builds.
+            manifestPlaceholders = [admobAppId: "ca-app-pub-3940256099942544~3347511713"]
+            resValue "string", "admob_banner_id", "ca-app-pub-3940256099942544/9214589741"
+            resValue "string", "admob_interstitial_id", "ca-app-pub-3940256099942544/1033173712"
+        }
         release {
+            manifestPlaceholders = [admobAppId: "ca-app-pub-8444865753152507~4066924554"]
+            resValue "string", "admob_banner_id", "ca-app-pub-8444865753152507/7431454491"
+            resValue "string", "admob_interstitial_id", "ca-app-pub-8444865753152507/6814439021"
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.0'
-    implementation 'com.google.android.gms:play-services-ads:20.2.0'
-    implementation "androidx.multidex:multidex:2.0.1"
-    implementation platform('com.google.firebase:firebase-bom:31.2.2')
-    implementation 'androidx.work:work-runtime:2.7.1'
-
-    // Add the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
-
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.core:core:1.17.0'
+    implementation 'androidx.activity:activity:1.11.0'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'com.google.android.gms:play-services-ads:25.5.0'
+    implementation 'com.google.android.ump:user-messaging-platform:4.0.0'
+    implementation platform('com.google.firebase:firebase-bom:34.4.0')
+    implementation 'androidx.work:work-runtime:2.10.5'
+    implementation 'com.google.firebase:firebase-crashlytics'
 }
