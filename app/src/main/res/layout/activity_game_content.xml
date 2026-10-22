@@ -25,12 +25,10 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="2dp"></GridView>
 
-    <com.google.android.gms.ads.AdView
+    <FrameLayout
         android:id="@+id/hw_banner_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:adSize="FULL_BANNER"
-        app:adUnitId="@string/banner_id"/>
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

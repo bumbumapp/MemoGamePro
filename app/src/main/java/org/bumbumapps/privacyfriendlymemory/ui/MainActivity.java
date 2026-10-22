@@ -22,10 +22,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.gms.ads.AdView;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import org.bumbumapps.privacyfriendlymemory.BannersLoader;
+import org.bumbumapps.privacyfriendlymemory.AdsConsent;
+import org.bumbumapps.privacyfriendlymemory.BannerHelper;
+import org.bumbumapps.privacyfriendlymemory.InterstitialHelper;
 import org.bumbumapps.privacyfriendlymemory.Constants;
 import org.bumbumapps.privacyfriendlymemory.common.MemoGameStatistics;
 import org.bumbumapps.privacyfriendlymemory.common.Preference;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatDrawerActivity {
     private Preference preference;
     private Drawable drawable2;
     Drawable drawable;
-    AdView bannerView;
+    android.widget.FrameLayout bannerView;
     TextView level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11,level12,level13,level14,level15,level16,level17,level18,level19,level20,level21,level22,level23,level24;
     private ArrayList<TextView> textViews=new ArrayList<TextView>();
     @Override
@@ -66,7 +67,11 @@ public class MainActivity extends AppCompatDrawerActivity {
         setupLevels();
         bannerView=findViewById(R.id.hw_banner_view);
         setupDifficultyBar();
-        BannersLoader.showGoogleBannerAd(this,bannerView);
+        // UMP consent first; banner + interstitial only when ads may be requested.
+        AdsConsent.gather(this, () -> {
+            BannerHelper.load(this, bannerView);
+            InterstitialHelper.preload(this);
+        });
         final NestedScrollView nestedScrollView = findViewById(R.id.neested);
 
         nestedScrollView.getViewTreeObserver().addOnGlobalLayoutListener(

@@ -23,20 +23,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
-import org.bumbumapps.privacyfriendlymemory.BannersLoader;
+import org.bumbumapps.privacyfriendlymemory.BannerHelper;
+import org.bumbumapps.privacyfriendlymemory.InterstitialHelper;
 import org.bumbumapps.privacyfriendlymemory.Constants;
-import org.bumbumapps.privacyfriendlymemory.Globals;
-import org.bumbumapps.privacyfriendlymemory.Timers;
 import org.bumbumapps.privacyfriendlymemory.common.MemoGameLayoutProvider;
 import org.bumbumapps.privacyfriendlymemory.common.MemoGameStatistics;
 import org.bumbumapps.privacyfriendlymemory.common.Preference;
@@ -65,8 +55,7 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
     private GridView  gridview;
     private Timer timerViewUpdater;
     private Preference preference;
-    private InterstitialAd mInterstitialAd;
-    private AdView bannerView;
+    private android.widget.FrameLayout bannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +73,9 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
         setupGridview();
         updateStatsView();
         setupToolBar();
-        loadGoogleInterstitialAd();
+        InterstitialHelper.preload(this);
         bannerView=findViewById(R.id.hw_banner_view);
-        BannersLoader.showGoogleBannerAd(this,bannerView);
+        BannerHelper.load(this, bannerView);
 
     }
 
@@ -267,21 +256,8 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
 
 
         }
-        if(Globals.TIMER_FINISHED && mInterstitialAd!=null){
-            mInterstitialAd.show(this);
-            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
-                @Override
-                public void onAdDismissedFullScreenContent() {
-                    Globals.TIMER_FINISHED=false;
-                    Timers.timer().start();
-                    mInterstitialAd = null;
-                    showWinDialog();
-                    loadGoogleInterstitialAd();
-                }
-            });
-        } else {
-            showWinDialog();
-        }
+        // Game over is a natural break point: interstitial (60 s cap), then the result dialog.
+        InterstitialHelper.showIfReady(this, this::showWinDialog);
     }
 
     private void showWinDialog() {
@@ -461,29 +437,4 @@ public class MemoActivity extends MemoAppCompatDrawerActivity {
             return winnerName;
         }
     }
-    private void loadGoogleInterstitialAd() {
-        MobileAds.initialize(context, (OnInitializationCompleteListener) new OnInitializationCompleteListener() {
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        InterstitialAd.load(
-                context,
-                context.getString(R.string.interstial_id),
-                new AdRequest.Builder().build(),
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        mInterstitialAd = interstitialAd;
-
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        super.onAdFailedToLoad(loadAdError);
-                        mInterstitialAd = null;
-                    }
-                });
-    }
-
 }
