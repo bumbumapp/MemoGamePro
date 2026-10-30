@@ -4,6 +4,8 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:fontFamily">@font/jakarta_semibold</item>
         <item name="fontFamily">@font/jakarta_semibold</item>
+        <item name="alertDialogTheme">@style/MemoDialog</item>
+        <item name="android:alertDialogTheme">@style/MemoDialog</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -83,4 +85,14 @@
     </style>
 
 
+    <!-- Readable dialog buttons (they were light grey on white). -->
+    <style name="MemoDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#D6336C</item>
+        <item name="android:textColorPrimary">#0E1222</item>
+        <item name="buttonBarPositiveButtonStyle">@style/MemoDialogButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/MemoDialogButton</item>
+    </style>
+    <style name="MemoDialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#D6336C</item>
+    </style>
 </resources>
