@@ -10,8 +10,8 @@ android {
         minSdk 26
         targetSdk 36
         // Play: versionCode 4 is live.
-        versionCode 5
-        versionName "1.2.0"
+        versionCode 6
+        versionName "2.0.0"
         vectorDrawables.useSupportLibrary = true
     }
 

@@ -510,60 +510,72 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <!-- Bento controls: full-width accent "New game", two white pills below. -->
     <Button
         android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_above="@+id/playFirend"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/main_button_padding"
-        android:layout_marginTop="@dimen/main_button_padding"
-        android:layout_marginRight="@dimen/main_button_padding"
-        android:background="@drawable/button"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/mg_btn_primary"
         android:clickable="false"
+        android:fontFamily="@font/jakarta_bold"
         android:onClick="onClick"
+        android:stateListAnimator="@null"
         android:text="@string/new_game"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        android:textStyle="normal" />
+        android:textColor="#FFFFFF"
+        android:textSize="17sp" />
 
     <Button
         android:id="@+id/playFirend"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="@dimen/main_button_padding"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_above="@+id/hw_banner_view"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/mg_center"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="@dimen/main_button_padding"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/button"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/mg_btn_tonal"
         android:clickable="false"
+        android:fontFamily="@font/jakarta_bold"
         android:onClick="onClick"
+        android:stateListAnimator="@null"
         android:text="@string/play_friend"
         android:textAllCaps="false"
-        android:layout_above="@+id/hw_banner_view"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        android:textStyle="normal" />
+        android:textColor="#0E1222"
+        android:textSize="15sp" />
+
+    <View
+        android:id="@+id/mg_center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/main_menu2"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="@dimen/main_button_padding"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_above="@+id/hw_banner_view"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/mg_center"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="@dimen/main_button_padding"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/button"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/mg_btn_tonal"
         android:clickable="false"
+        android:fontFamily="@font/jakarta_bold"
         android:onClick="onClick"
+        android:stateListAnimator="@null"
         android:text="@string/menu_menu"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        android:layout_above="@+id/hw_banner_view"
-        android:textStyle="normal" />
+        android:textColor="#0E1222"
+        android:textSize="15sp" />
+
     <FrameLayout
         android:id="@+id/hw_banner_view"
         android:layout_width="match_parent"
